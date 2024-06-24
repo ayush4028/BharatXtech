@@ -1,120 +1,96 @@
-import { useState } from 'react';
-import Logo from '/images/logo.png';
-import open from '/components/Navbar/open.svg';
-import close from '/components/Navbar/close.svg';
+import { NavLink } from "react-router-dom";
+import Logo from "/logo.png";
+
+import MobileNav from "@/components/MobileNav";
+import { Button } from "@/components/ui/button";
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+
+import link from "@/constants/NavLink.js";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
-    const [toggle, setToggle] = useState(false);
-    const link = [
-        {
-            title: 'Home',
-            link: '#',
-            active: false,
-        },
-        {
-            title: 'About Us',
-            link: '#',
-            active: false,
-        },
-        {
-            title: 'Solutions',
-            link: '#',
-            active: false,
-        },
-        {
-            title: 'Projects',
-            link: '#',
-            active: false,
-        },
-        {
-            title: 'Blogs',
-            link: '#',
-            active: false,
-        },
-        {
-            title: 'Contact Us',
-            link: '#',
-            active: false,
-        },
-    ];
-
-    function handleClick() {
-        setToggle((value) => !value);
-    }
-
-    console.log(toggle);
-
     return (
-        <div className="flex flex-col">
-            <nav
-                className={`relative z-20 bg-blue-500 flex flex-col justify-between px-8 lg:px-36 py-5`}
-            >
-                <div className="flex flex-row justify-between items-center z-10">
-                    <a className="space-x-1" href="#">
-                        <img
-                            src={Logo}
-                            className="aspect-square w-36 h-14 inline -translate-y-1"
-                        />
-                    </a>
+        <header className="flex flex-row justify-between items-center h-32 border-2 border-red-900 lg:px-20 px-5 w-full lg:gap-10 gap-5">
+            <img src={Logo} alt="Company Logo" />
 
-                    {/* Desktop Navbar */}
-                    <div className='flex flex-col justify-center items-center gap-2'>
-                        <div className='hidden sm:block md:block lg:block xl:block border-black border-b pb-2 tracking-widest'>Now Hiring: Are you driven and motivated 1st Line IT Support Engineer?</div>
-                        <div className=''></div>
-                        <div className="hidden md:flex flex-row gap-20">
-                            {link.map((item, index) => (
-                                <a
-                                    key={index}
-                                    className={`cursor-pointer text-base tracking-wide hover:text-[#eff3f6] hover:border-red-500 hover:border-t-2 ${item.active
-                                            ? 'font-semibold text-[#0283F3] '
-                                            : 'text-black'
-                                        }`}
-                                >
-                                    {item.title}
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Hamburger */}
-                    <button
-                        className="inline-flex md:hidden items-center justify-center p-2 -translate-y-1 rounded-lg [&>*]:aspect-square [&>*]:h-7"
-                        onClick={handleClick}
-                    >
-                        {toggle ? (
-                            <img src={close} alt="close" />
-                        ) : (
-                            <img src={open} alt="open" />
-                        )}
-                    </button>
-
-                    <button className="hover:bg-red-400 bg-red-600 hidden md:inline uppercase px-4 py-2 md:px-6 md:py-3 lg:px-9 lg:py-4 rounded-2xl text-sm font-semibold text-white">
-                        Get Started
-                    </button>
+            <div className="flex flex-col justify-center items-center w-full">
+                <div className="cursor-text text-base text-[#627792] py-3 max-md:hidden">
+                    <span className="cursor-pointer text-[#0E2B5C] font-semibold">
+                        Now Hiring:
+                    </span>{" "}
+                    Are you a driven and motivated 1st Line IT Support Engineer?
                 </div>
-            </nav>
 
-            {/* Mobile Nav */}
-            <div
-                className={`bg-white absolute w-full flex flex-col items-center gap-2 py-5 text-center left-0 translation-all duration-500 md:hidden
-                ${toggle ? 'translate-y-20 mt-2 border-t-2 border-gray-200' : ' -translate-y-80 '}`}
-            >
-                {link.map((item, index) => (
-                    <a
-                        key={index}
-                        className={`text-center cursor-pointer py-2 text-sm tracking-wide select-none hover:text-[#0283F3] ${item.active
-                            ? 'font-semibold text-[#0283F3]'
-                            : 'text-black'
-                            }`}
-                    >
-                        {item.title}
-                    </a>
-                ))}
-
-                <button className="hover:bg-red-400 bg-red-600 md:hidden uppercase px-6 py-4 md:px-9 md:py-4 rounded-2xl text-sm font-semibold text-white">
-                    Get the App
-                </button>
+                <nav className="flex flex-row gap-6 font-bold relative border-t max-xl:hidden">
+                    {link.map((item, index) =>
+                        item.subMenu ? (
+                            <NavigationMenu key={index}>
+                                <NavigationMenuList>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuTrigger className="[&>svg]:h-5 h-full [&>svg]:w-5 w-full text-lg max-xl:px-3 max-2xl:text-sm px-5 py-4 group hover:bg-white data-[state=open]:bg-inherit data-[active]:bg-inherit focus:bg-white font-semibold">
+                                            {item.title}
+                                            <span className="absolute top-0 left-0 bg-[#FC5546] w-0 h-0.5 rounded-sm group-hover:w-full transition-all duration-300"></span>
+                                        </NavigationMenuTrigger>
+                                        <NavigationMenuContent
+                                            className={cn(
+                                                "p-4",
+                                                item.additionClassNames
+                                                    ? item.additionClassNames
+                                                    : "",
+                                            )}
+                                        >
+                                            {item.subMenu.map(
+                                                (subItem, index) => (
+                                                    <NavigationMenuLink
+                                                        asChild
+                                                        key={index}
+                                                    >
+                                                        <NavLink
+                                                            key={index}
+                                                            to={subItem.link}
+                                                            className={cn(
+                                                                "hover:bg-slate-300 rounded-md p-4",
+                                                            )}
+                                                        >
+                                                            {subItem.title}
+                                                        </NavLink>
+                                                    </NavigationMenuLink>
+                                                ),
+                                            )}
+                                        </NavigationMenuContent>
+                                    </NavigationMenuItem>
+                                </NavigationMenuList>
+                            </NavigationMenu>
+                        ) : (
+                            <NavLink
+                                key={index}
+                                to={item.link}
+                                className="px-5 py-4 text-lg relative group font-semibold text-center max-xl:px-3 max-2xl:text-sm"
+                            >
+                                {item.title}
+                                <span className="absolute top-0 left-0 bg-[#FC5546] w-0 h-0.5 rounded-sm group-hover:w-full transition-all duration-300"></span>
+                            </NavLink>
+                        ),
+                    )}
+                </nav>
             </div>
-        </div>
+
+            <Button
+                className="uppercase max-sm:hidden"
+                variant="destructive"
+                size="lg"
+            >
+                GET STARTED
+            </Button>
+
+            <MobileNav triggerClassNames="xl:hidden px-4" />
+        </header>
     );
 }
