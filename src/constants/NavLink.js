@@ -16,7 +16,9 @@ const NavLink = [
                 link: "#",
             },
         ],
+        
         additionClassNames: "grid w-[400px] gap-3  md:w-[500px] md:grid-cols-2 lg:w-[600px]"
+
     },
     {
         title: "About Us",
@@ -43,7 +45,22 @@ const NavLink = [
                 link: "#",
             },
         ],
-        additionClassNames: "grid w-[400px] gap-3 md:w-[200px] md:grid-cols-1"
+        additionClassNames: "grid w-[400px] gap-3 md:w-[200px] md:grid-cols-1",
+        navMenu:[
+            {
+                title: "Project1",
+                link: "#",
+            },
+            {
+                title: "Project2",
+                link: "#",
+            },
+            {
+                title: "Project3",
+                link: "#",
+            },
+        ],
+        mobNavClassNames: "grid w-[230px] gap-3  md:grid-cols-1"
     },
     {
         title: "Blogs",
