@@ -1,7 +1,7 @@
 const NavLink = [
     {
         title: "Home",
-        link: "#",
+        link: "/",
         subMenu: [
             {
                 title: "Home 1",
@@ -33,14 +33,17 @@ const NavLink = [
             {
                 title: "Project 1",
                 link: "#",
+                hidden: false,
             },
             {
                 title: "Project 2",
                 link: "#",
+                hidden: false,
             },
             {
                 title: "Project 3",
                 link: "#",
+                hidden: false,
             },
         ],
         additionClassNames: "grid w-[400px] gap-3 md:w-[200px] md:grid-cols-1"

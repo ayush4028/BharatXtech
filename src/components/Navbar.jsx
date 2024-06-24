@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "/logo.png";
 
 import MobileNav from "@/components/MobileNav";
@@ -34,7 +34,7 @@ export default function Navbar() {
                             <NavigationMenu key={index}>
                                 <NavigationMenuList>
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger className="[&>svg]:h-5 m-0 h-full [&>svg]:w-5 w-full text-lg max-xl:px-3 max-2xl:text-sm px-5 py-4 relative group hover:bg-white data-[state=open]:bg-inherit data-[active]:bg-inherit focus:bg-white font-semibold">
+                                        <NavigationMenuTrigger className="[&>svg]:h-5 h-full [&>svg]:w-5 w-full text-lg max-xl:px-3 max-2xl:text-sm px-5 py-4 group hover:bg-white data-[state=open]:bg-inherit data-[active]:bg-inherit focus:bg-white font-semibold">
                                             {item.title}
                                             <span className="absolute top-0 left-0 bg-[#FC5546] w-0 h-0.5 rounded-sm group-hover:w-full transition-all duration-300"></span>
                                         </NavigationMenuTrigger>
@@ -52,13 +52,15 @@ export default function Navbar() {
                                                         asChild
                                                         key={index}
                                                     >
-                                                        <Link
+                                                        <NavLink
                                                             key={index}
                                                             to={subItem.link}
-                                                            className="hover:bg-slate-300 rounded-md p-4"
+                                                            className={cn(
+                                                                "hover:bg-slate-300 rounded-md p-4",
+                                                            )}
                                                         >
                                                             {subItem.title}
-                                                        </Link>
+                                                        </NavLink>
                                                     </NavigationMenuLink>
                                                 ),
                                             )}
@@ -67,20 +69,24 @@ export default function Navbar() {
                                 </NavigationMenuList>
                             </NavigationMenu>
                         ) : (
-                            <Link
+                            <NavLink
                                 key={index}
                                 to={item.link}
                                 className="px-5 py-4 text-lg relative group font-semibold text-center max-xl:px-3 max-2xl:text-sm"
                             >
                                 {item.title}
                                 <span className="absolute top-0 left-0 bg-[#FC5546] w-0 h-0.5 rounded-sm group-hover:w-full transition-all duration-300"></span>
-                            </Link>
+                            </NavLink>
                         ),
                     )}
                 </nav>
             </div>
 
-            <Button className="uppercase max-sm:hidden" variant="destructive" size="lg">
+            <Button
+                className="uppercase max-sm:hidden"
+                variant="destructive"
+                size="lg"
+            >
                 GET STARTED
             </Button>
 
