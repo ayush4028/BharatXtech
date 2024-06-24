@@ -9,11 +9,6 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-
-import { IoChevronDown, IoMdMenu } from "@/icons";
-import link from "@/constants/NavLink.js";
-
 import {
     Menubar,
     MenubarContent,
@@ -21,6 +16,10 @@ import {
     MenubarMenu,
     MenubarTrigger,
 } from "@/components/ui/menubar";
+
+import { cn } from "@/lib/utils";
+import link from "@/constants/NavLink.js";
+import { IoChevronDown, IoMdMenu } from "@/icons";
 
 export default function MobileNav({ triggerClassNames = "" }) {
     return (
