@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 export default function Navbar() {
     return (
-        <header className="flex flex-row justify-between items-center h-32 border-2 border-red-900 lg:px-20 px-5 w-full lg:gap-10 gap-5">
+        <header className="flex flex-row justify-between items-center h-32 lg:px-20 px-5 w-full lg:gap-10 gap-5">
             <img src={Logo} alt="Company Logo" />
 
             <div className="flex flex-col justify-center items-center w-full">
