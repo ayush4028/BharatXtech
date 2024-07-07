@@ -29,7 +29,7 @@ const NavLink = [
     {
         title: "Projects",
         link: "#",
-        subMenu: [
+        project: [
             {
                 title: "Project 1",
                 link: "#",
